@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   return (
     <>
@@ -19,16 +21,16 @@ export default function Footer() {
             <div className="pl-12 mt-8 w-1/3 ml-20 ">
               <ul className=" text-xs ">
                 <li className="pb-5">
-                  <a href="#">Home</a>
+                  <Link to="/">Home</Link>
                 </li>
                 <li className="pb-5 ">
-                  <a href="#">Shop</a>
+                  <Link to="/shop">Shop</Link>
                 </li>
                 <li className="pb-5">
-                  <a href="#">Roaster</a>
+                  <Link to="/roaster">Roaster</Link>
                 </li>
                 <li>
-                  <a href="#">Account</a>
+                  <Link to="/profile">Account</Link>
                 </li>
               </ul>
             </div>
@@ -56,7 +58,7 @@ export default function Footer() {
               <div className="flex justify-center gap-2">
                 <img src="https://img.icons8.com/ios-glyphs/30/null/facebook-new.png" />
                 <img src="https://img.icons8.com/ios-glyphs/30/null/instagram-new.png" />
-                <img src="https://img.icons8.com/ios-glyphs/30/null/line-me.png"/>
+                <img src="https://img.icons8.com/ios-glyphs/30/null/line-me.png" />
               </div>
             </div>
           </div>

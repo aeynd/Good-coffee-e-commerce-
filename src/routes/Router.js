@@ -1,8 +1,12 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
 import AuthLayout from "../layouts/AuthLayout";
+import CartPage from "../pages/CartPage";
 import ContactPage from "../pages/ContactPage";
 import HomePage from "../pages/HomePage";
-import RoasterPage from "../pages/RoasterPage";
+import ProductInfo from "../pages/ProductInfo";
+import ProfilePage from "../pages/ProfilePage";
+import RoasterPage from "../pages/RoasterPage";   
 import ShopPage from "../pages/ShopPage";
 
 const router = createBrowserRouter([
@@ -18,12 +22,25 @@ const router = createBrowserRouter([
         element: <ShopPage />
       },
       {
+        path: '/shop/:productId',
+        element: <ProductInfo/>
+      }
+      ,
+      {
         path: "/roaster",
         element: <RoasterPage />
       },
       {
         path: "/contact",
         element: <ContactPage />
+      },
+      {
+        path: "/profile",
+        element: <ProfilePage />
+      },
+      {
+        path: "/cart",
+        element: <CartPage />
       }
     ]
   }

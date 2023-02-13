@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import validateRegister from "../../validators/validate-register";
 import Input from "../../components/input";
-import { Link } from "react-router-dom/";
+
 import * as authApi from "../../apis/auth-api";
 // import PacmanLoader from "react-spinners/PacmanLoader";
 const initialInput = {
@@ -50,7 +50,7 @@ export default function RegisterForm({ show, onClose }) {
               className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8"
               onClick={e => e.stopPropagation()}
             >
-              <h3 className="text-xl font-medium text-gray-900 ">Sign up</h3>
+              <h3 className="text-xl font-medium text-gray-900 ">Sign in</h3>
               <div>
                 <div className="mb-2 block">
                   {/* <Label htmlFor="First Name" value={input.firstName} /> */}
@@ -115,9 +115,7 @@ export default function RegisterForm({ show, onClose }) {
               </div>
 
               <div className="flex justify-center w-full ">
-                {/* <Link to='/'> */}
                 <Button type="submit">Sign up</Button>
-                {/* </Link> */}
               </div>
             </div>
           </form>
