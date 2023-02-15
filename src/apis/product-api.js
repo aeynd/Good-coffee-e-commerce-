@@ -5,4 +5,4 @@ export const productInfo = productId =>
   axios.get(`/product/shop/${productId} `);
 
 export const productInCart = productId =>
-  axios.post(`/shop/${productId}`,productId);
+  axios.post(`/shop/${productId}`);

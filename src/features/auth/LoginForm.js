@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import useAuth from "../../hooks/useAuth";
 
 import { Link } from "react-router-dom";
 import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
-import RegisterForm from "./RegisterForm";
 
 export default function LoginForm({ show, onClose, setOpenRegis }) {
   const [email, setEmail] = useState("");
@@ -20,8 +19,12 @@ export default function LoginForm({ show, onClose, setOpenRegis }) {
       console.log(err);
     }
   };
+  useEffect(() => {
+    setEmail("")
+    setPassword("")
+  },[show])
 
-  //validate login
+
 
   return (
     <>
@@ -40,38 +43,31 @@ export default function LoginForm({ show, onClose, setOpenRegis }) {
                 <div className="mb-2 block">
                   <Label htmlFor="email" value="Your email" />
                 </div>
-                <input
+                <TextInput
                   type="text"
                   placeholder="Enter your email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
+                  required={true}
                 />
               </div>
               <div>
                 <div className="mb-2 block">
                   <Label htmlFor="password" value="Your password" />
                 </div>
-                <input
+                <TextInput
                   type="password"
                   placeholder="Enter your password"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
+                  required={true}
                 />
               </div>
-              <div className="flex justify-between">
-                {/* <div className="flex items-center gap-2">
-                  <Checkbox id="remember" />
-                  <Label htmlFor="remember">Remember me</Label>
-                </div> */}
-                {/* <a
-                  href="/"
-                  className="text-sm text-blue-700 hover:underline dark:text-blue-500"
-                >
-                  Lost Password?
-                </a> */}
-              </div>
+              <div className="flex justify-between"></div>
               <div className="w-full">
-                <Button type="submit" onClick={onClose}>Log in</Button>
+                <Button type="submit" onClick={onClose}>
+                  Log in
+                </Button>
               </div>
               <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                 Not registered?{" "}

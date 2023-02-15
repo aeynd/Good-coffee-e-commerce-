@@ -52,65 +52,60 @@ export default function RegisterForm({ show, onClose }) {
             >
               <h3 className="text-xl font-medium text-gray-900 ">Sign in</h3>
               <div>
-                <div className="mb-2 block">
-                  {/* <Label htmlFor="First Name" value={input.firstName} /> */}
-                </div>
-                <Input
+                <div className="mb-2 block"></div>
+                <TextInput
                   placeholder="First Name"
                   name="firstName"
                   value={input.firstName}
                   onChange={handleChangeInput}
                   error={error.firstName}
+                  required={true}
                 />
               </div>
               <div>
-                <div className="mb-2 block">
-                  {/* <Label htmlFor="Last Name" value="Your Last Name" /> */}
-                </div>
-                <Input
+                <div className="mb-2 block"></div>
+                <TextInput
                   placeholder="Last Name"
                   name="lastName"
                   value={input.lastName}
                   onChange={handleChangeInput}
                   error={error.lastName}
+                  required={true}
                 />
               </div>
               <div>
-                <div className="mb-2 block">
-                  {/* <Label htmlFor="Email" value="Your Email" /> */}
-                </div>
-                <Input
+                <div className="mb-2 block"></div>
+                <TextInput
                   placeholder="Email"
                   name="email"
                   value={input.email}
                   onChange={handleChangeInput}
                   error={error.email}
+                  required={true}
                 />
               </div>
               <div>
-                <div className="mb-2 block">
-                  {/* <Label htmlFor="Password" value="Your Password" /> */}
-                </div>
-                <Input
+                <div className="mb-2 block"></div>
+                <TextInput
                   type="password"
                   placeholder="Password"
                   name="password"
                   value={input.password}
                   onChange={handleChangeInput}
                   error={error.password}
+                  required={true}
                 />
               </div>
               <div>
-                <div className="mb-2 block">
-                  {/* <Label htmlFor="Password" value="Confirm Your Password" /> */}
-                </div>
-                <Input
+                <div className="mb-2 block"></div>
+                <TextInput
                   type="password"
                   placeholder="Confirm password"
                   name="confirmPassword"
                   value={input.confirmPassword}
                   onChange={handleChangeInput}
                   error={error.confirmPassword}
+                  required={true}
                 />
               </div>
 

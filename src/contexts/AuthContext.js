@@ -13,6 +13,7 @@ export default function AuthContextProvider({ children }) {
   const [authenticatedUser, setAuthenticatedUser] = useState(
     getAccessToken() ? true : null
   );
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const fetchAuthUser = async () => {
@@ -40,7 +41,7 @@ export default function AuthContextProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ login, logout, authenticatedUser }}>
+    <AuthContext.Provider value={{ login, logout, authenticatedUser,open,setOpen }}>
       {children}
     </AuthContext.Provider>
   );

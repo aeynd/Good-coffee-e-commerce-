@@ -23,10 +23,10 @@ export default function RoasterContainer() {
       </div>
 
       {roasters.map(el => (
-        <div className="flex flex-col justify-center ">
-          <div className="" key={el.id}>
+        <div className="flex flex-col justify-center " key={el.id}>
+          <div className="" >
             <div className="flex flex-col items-center">
-              <img className="flex" src={el.image} />
+              <img className="" src={el.image} />
               <p className="flex">{el.title}</p>
             </div>
           </div>

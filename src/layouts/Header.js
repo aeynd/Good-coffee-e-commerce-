@@ -8,9 +8,9 @@ import DropdownUser from "./DropdownUser";
 import Menu from "./Menu";
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+
   const [openRegis, setOpenRegis] = useState(false);
-  const { authenticatedUser } = useAuth();
+  const { authenticatedUser,open,setOpen } = useAuth();
 
   return (
     <>

@@ -6,20 +6,7 @@ import useCart from "../hooks/useCart";
 
 export default function ProductInfo() {
   const [products, setProducts] = useState({});
-  const { handleClickInc, handleClickDec, handleAddToCart } =
-    useCart(CartContext);
-
-  const handleClickAddToCart = productId => {
-    handleAddToCart(productId);
-  };
-
-  const handleClickIncProduct = cartId => {
-    handleClickInc(cartId);
-  };
-
-  const handleClickDecProduct = cartId => {
-    handleClickDec(cartId);
-  };
+  const { handleAddToCart } = useCart(CartContext);
 
   const params = useParams();
 
@@ -30,6 +17,10 @@ export default function ProductInfo() {
     };
     fetchProductInfo();
   }, [params.productId]);
+
+  const handleClickAddToCart = productId => {
+    handleAddToCart(productId);
+  };
 
   console.log(products);
 
@@ -46,21 +37,10 @@ export default function ProductInfo() {
             <div className="flex justify-center">
               <img className="w-52" src={products.image} />
             </div>
-            <div className="">
-              <p className="text-xs text-gray-400">Quantity</p>
-            </div>
-            <div className="flex justify-center mt-2">
-              <button className="w-5" onClick={handleClickDecProduct()}>
-                -
-              </button>
-              <button className="w-5" onClick={handleClickIncProduct()}>
-                +
-              </button>
-            </div>
             <div className="mt-5 ">
               <button
                 className="text-xs text-white p-1 w-full bg-lime-900 rounded-md"
-                onClick={handleClickAddToCart()}
+                onClick={handleClickAddToCart(params.productId)}
               >
                 Add to cart
               </button>
@@ -70,6 +50,7 @@ export default function ProductInfo() {
           <div className="flex flex-col gap-4 w-1/3">
             <p>{products.Roaster?.title}</p>
             <p>{products.title}</p>
+            <p>{products.Category?.title}</p>
             <span>{products.price}$</span>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam

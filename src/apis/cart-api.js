@@ -11,5 +11,4 @@ export const updateIncCart = cartId =>
 export const updateDecCart = cartId =>
   axios.patch("/cart/updatedeccart", { cartId });
 
-export const deleteProductInCart = productId =>
-  axios.delete("/cart/:productId", productId);
+export const deleteProductInCart = cartId => axios.delete(`/cart/${cartId}`);

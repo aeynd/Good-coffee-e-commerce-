@@ -1,4 +1,6 @@
 import { Carousel } from "flowbite-react";
+import { Link } from "react-router-dom";
+
 export default function HomePage() {
   return (
     <>
@@ -8,22 +10,28 @@ export default function HomePage() {
         </div>
         <hr className="m-6 sm:mx-auto dark:border-gray-700 " />
         <div className="p-6">
-          <p>Best seller</p>
+          <p className="font-bold">Best seller</p>
         </div>
         <div className="h-56 sm:h-96 xl:h-80 2xl:h-96 p-6">
           <Carousel>
-            <img
-              src="https://res.cloudinary.com/dxurpn0lb/image/upload/v1675331854/personal%20project/Group_15_1_zzht5d.png"
-              className=""
-            />
-            <img
-              src="https://res.cloudinary.com/dxurpn0lb/image/upload/v1675331854/personal%20project/Group_15_1_zzht5d.png"
-              className=""
-            />
-            <img
-              src="https://res.cloudinary.com/dxurpn0lb/image/upload/v1675331854/personal%20project/Group_15_1_zzht5d.png"
-              className=""
-            />
+            <Link to="/shop/4">
+              <img
+                src="https://res.cloudinary.com/dxurpn0lb/image/upload/v1676360391/personal%20project/Group_18_patjg4.png"
+                className="w-full"
+              />
+            </Link>
+            <Link to="/shop/6">
+              <img
+                src="https://res.cloudinary.com/dxurpn0lb/image/upload/v1676360301/personal%20project/Group_19_moffqj.jpg"
+                className="w-full"
+              />
+            </Link>
+            <Link to="/shop/5">
+              <img
+                src="https://res.cloudinary.com/dxurpn0lb/image/upload/v1676360301/personal%20project/Group_20_pnwppt.png"
+                className="w-full"
+              />
+            </Link>
           </Carousel>
         </div>
 

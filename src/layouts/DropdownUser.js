@@ -16,16 +16,20 @@ export default function DropdownUser() {
         }
       >
         <Dropdown.Header>
-          <span className="block text-sm">{authenticatedUser.firstName} {authenticatedUser.lastName}</span>
+          <span className="block text-sm">
+            {authenticatedUser.firstName} {authenticatedUser.lastName}
+          </span>
           <span className="block text-sm font-medium truncate">
             {authenticatedUser.email}
           </span>
         </Dropdown.Header>
-        <Link to="/profile">
+        {/* <Link to="/profile">
           <Dropdown.Item>Profile</Dropdown.Item>
-        </Link>
+        </Link> */}
         <Dropdown.Divider />
-        <Dropdown.Item onClick={logout}>Sign out</Dropdown.Item>
+        <Link to="/">
+          <Dropdown.Item onClick={logout}>Sign out</Dropdown.Item>
+        </Link>
       </Dropdown>
     </>
   );

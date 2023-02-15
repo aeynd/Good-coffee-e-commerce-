@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import * as cartApi from "../apis/cart-api";
 
 export const CartContext = createContext();
@@ -6,11 +6,17 @@ export const CartContext = createContext();
 export default function CartContextProvider({ children }) {
   const [cart, setCart] = useState([]);
 
-  // function getProductCart(items) {
-  //   const newList = [...cart];
-  //   newList.push(items);
-  //   setCart(newList);
-  // }
+  // const fetchCart = async () => {
+  //   try {
+  //     const res = await cartApi.getAllItemInCart();
+  //     setCart(res.data.carts);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+  // useEffect(() => {
+  //   fetchCart();
+  // }, []);
 
   const handleAddToCart = async productId => {
     await cartApi.addToCart(productId);
@@ -24,6 +30,11 @@ export default function CartContextProvider({ children }) {
     await cartApi.updateDecCart(cartId);
   };
 
+  const handleClickDel = async cartId => {
+    console.log(cartId);
+    await cartApi.deleteProductInCart(cartId);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -31,7 +42,8 @@ export default function CartContextProvider({ children }) {
         setCart,
         handleAddToCart,
         handleClickInc,
-        handleClickDec
+        handleClickDec,
+        handleClickDel
       }}
     >
       {children}
