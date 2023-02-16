@@ -43,11 +43,11 @@ export default function ProductContainer() {
         <hr className="m-6 sm:mx-auto dark:border-gray-700 " />
 
         <div className=" flex justify-end  border-gray-400 pr-12">
-          <input
+          {/* <input
             type="text"
             placeholder="Search here :)"
             className="rounded-xl"
-          />
+          /> */}
         </div>
       </div>
 
