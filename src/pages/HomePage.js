@@ -22,13 +22,13 @@ export default function HomePage() {
             </Link>
             <Link to="/shop/6">
               <img
-                src="https://res.cloudinary.com/dxurpn0lb/image/upload/v1676360301/personal%20project/Group_19_moffqj.jpg"
+                src="https://res.cloudinary.com/dxurpn0lb/image/upload/v1676360301/personal%20project/Group_20_pnwppt.png"
                 className="w-full"
               />
             </Link>
             <Link to="/shop/5">
               <img
-                src="https://res.cloudinary.com/dxurpn0lb/image/upload/v1676360301/personal%20project/Group_20_pnwppt.png"
+                src="https://res.cloudinary.com/dxurpn0lb/image/upload/v1676360301/personal%20project/Group_19_moffqj.jpg"
                 className="w-full"
               />
             </Link>

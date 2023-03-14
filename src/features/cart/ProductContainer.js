@@ -11,11 +11,6 @@ export default function ProductContainer() {
 
   const { handleAddToCart } = useCart(CartContext);
 
-  // const addToCart = async productId => {
-  //   await productApi.productInCart(productId);
-  //   console.log(addToCart);
-  // };
-
   useEffect(() => {
     const fetchProduct = async () => {
       const res = await productApi.getAllProduct();
@@ -50,26 +45,18 @@ export default function ProductContainer() {
           /> */}
         </div>
       </div>
-
-      {products.map(el => (
-        <div className=" ">
-          <div
-            className=" flex justify-center  mt-5 gap-5 mx-5 p-10 "
-            key={el.id}
-          >
-            <div className=" flex flex-col  max-w-xs">
+      <div className="flex justify-center flex-wrap ">
+        {products.map(el => (
+          <div className="p-5 hover:bg-gray-200" key={el.id}>
+            <div className="">
               <Link to={`/shop/${el.id}`}>
-                <img className="flex items-center" src={el.image} />
+                <img className="h-[30vh]" src={el.image} />
               </Link>
-              <div className="px-5 pb-5">
-                <h5 className="text-xl font-semibold tracking-tight text-gray-900 ">
-                  {el.title}
-                </h5>
+              <div className="">
+                <h5 className="text-sm font-semibold tracking-tight text-gray-900 ">{el.title}</h5>
 
-                <div className="flex items-center justify-between">
-                  <span className="text-lg font-bold text-gray-900 ">
-                    {el.price}$
-                  </span>
+                <div className="flex justify-between items-center">
+                  <span className="text-xs font-bold text-gray-900 ">{el.price}$</span>
 
                   <button
                     onClick={() => {
@@ -83,9 +70,44 @@ export default function ProductContainer() {
               </div>
             </div>
           </div>
-        </div>
-        
-      ))}
+        ))}
+      </div>
     </>
   );
 }
+
+//  {products.map(el => (
+//         <div className="w-80 flex flex-col">
+//           <div
+//             className=" flex justify-center  mt-5 gap-5 mx-5 p-10 "
+//             key={el.id}
+//           >
+//             <div className=" flex flex-col  max-w-xs">
+//               <Link to={`/shop/${el.id}`}>
+//                 <img className="flex items-center" src={el.image} />
+//               </Link>
+//               <div className="px-5 pb-5">
+//                 <h5 className="text-xl font-semibold tracking-tight text-gray-900 ">
+//                   {el.title}
+//                 </h5>
+
+//                 <div className="flex items-center justify-between">
+//                   <span className="text-lg font-bold text-gray-900 ">
+//                     {el.price}$
+//                   </span>
+
+//                   <button
+//                     onClick={() => {
+//                       handleClickAddToCart(el.id);
+//                     }}
+//                     className="text-white bg-gray-400 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-1 text-center"
+//                   >
+//                     Add to cart
+//                   </button>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+
+//       ))}

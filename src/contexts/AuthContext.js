@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import jwtDecode from 'jwt-decode'
 import * as authApi from "../apis/auth-api";
+import * as productApi from "../apis/product-api";
 import {
   getAccessToken,
   removeAccessToken,
@@ -40,8 +41,15 @@ export default function AuthContextProvider({ children }) {
     setAuthenticatedUser(null);
   };
 
+  // const handleClickDelByAdmin = async productId => {
+  //   await productApi.deleteProduct(productId);
+  // };
+
   return (
-    <AuthContext.Provider value={{ login, logout, authenticatedUser,open,setOpen }}>
+    <AuthContext.Provider value={{
+      login, logout, authenticatedUser, open, setOpen,
+      // handleClickDelByAdmin
+    }}>
       {children}
     </AuthContext.Provider>
   );

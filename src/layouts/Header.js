@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LoginForm from "../features/auth/LoginForm";
 import RegisterForm from "../features/auth/RegisterForm";
@@ -8,9 +8,8 @@ import DropdownUser from "./DropdownUser";
 import Menu from "./Menu";
 
 export default function Header() {
-
   const [openRegis, setOpenRegis] = useState(false);
-  const { authenticatedUser,open,setOpen } = useAuth();
+  const { authenticatedUser, open, setOpen } = useAuth();
 
   return (
     <>
@@ -34,6 +33,13 @@ export default function Header() {
               </li>
             </ul>
           </div>
+          <div>
+            {authenticatedUser?.role === "ADMIN" && (
+              <Link to="/admin">
+                <button>Admin</button>
+              </Link>
+            )}
+          </div>
           <div className="flex pr-4 gap-4">
             {authenticatedUser ? (
               <DropdownUser />
@@ -45,7 +51,10 @@ export default function Header() {
 
             <button>
               <Link to="/cart">
-                <img className="w-1/2" src="https://img.icons8.com/laces/64/null/shopping-basket.png" />
+                <img
+                  className="w-1/2"
+                  src="https://img.icons8.com/laces/64/null/shopping-basket.png"
+                />
               </Link>
             </button>
           </div>
@@ -54,11 +63,7 @@ export default function Header() {
       </nav>
       <div onClick={() => setOpen(false)} onClose={() => setOpen(false)}>
         <RegisterForm show={openRegis} onClose={() => setOpenRegis(false)} />
-        <LoginForm
-          show={open}
-          onClose={() => setOpen(false)}
-          setOpenRegis={setOpenRegis}
-        />
+        <LoginForm show={open} onClose={() => setOpen(false)} setOpenRegis={setOpenRegis} />
       </div>
     </>
   );

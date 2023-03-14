@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import * as cartApi from "../apis/cart-api";
 
+
 export const CartContext = createContext();
 
 export default function CartContextProvider({ children }) {
@@ -35,6 +36,8 @@ export default function CartContextProvider({ children }) {
     await cartApi.deleteProductInCart(cartId);
   };
 
+
+
   return (
     <CartContext.Provider
       value={{
@@ -43,7 +46,8 @@ export default function CartContextProvider({ children }) {
         handleAddToCart,
         handleClickInc,
         handleClickDec,
-        handleClickDel
+        handleClickDel,
+      
       }}
     >
       {children}

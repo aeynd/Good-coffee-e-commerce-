@@ -10,6 +10,8 @@ import ProfilePage from "../pages/ProfilePage";
 import RoasterPage from "../pages/RoasterPage";
 import ShopPage from "../pages/ShopPage";
 import ProtectedRoute from "../features/auth/ProtectedRoute";
+import AdminPage from "../pages/AdminPage";
+import ProtectAdminRoute from "../features/auth/ProtectAdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <ProfilePage />
+      },
+      {
+        path: "/admin",
+        element: (
+          <ProtectAdminRoute>
+            <AdminPage />
+          </ProtectAdminRoute>
+        )
       },
       {
         path: "/cart",

@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-// import CartList from "../features/cart/CartList";
+import { Link, useNavigate } from "react-router-dom";
 import * as authApi from "../apis/auth-api";
 import useCart from "../hooks/useCart";
 import { CartContext } from "../contexts/CartContext";
@@ -8,11 +7,11 @@ import * as cartApi from "../apis/cart-api";
 
 export default function CartPage() {
   const [productInCart, setProductInCart] = useState([]);
-  const { handleClickInc, handleClickDec, handleClickDel } =
-    useCart(CartContext);
+  const { handleClickInc, handleClickDec, handleClickDel } = useCart(CartContext);
   const [file, setFile] = useState(null);
   const inputEl = useRef();
 
+  const navigate = useNavigate()
   const fetchCart = async () => {
     try {
       const res = await cartApi.getAllItemInCart();
@@ -45,13 +44,9 @@ export default function CartPage() {
     formData.append("paymentImg", file);
     await authApi.paymentImg(formData);
     setFile(null);
+    navigate("/")
     console.log(formData);
   };
-
-
-  // const checkoutAlert = () => {
-  //   alert("sdfher")
-  // }
 
   return (
     <>
@@ -60,8 +55,8 @@ export default function CartPage() {
           <p>CART</p>
         </div>
         <hr className="m-6 sm:mx-auto dark:border-gray-700 " />
-        <div className="flex justify-center font-Roboto ">
-          <div className="flex flex-col w-1/2 bg-gray-50">
+        <div className="flex justify-center font-Roboto">
+          <div className="flex flex-col bg-gray-50">
             <div className=" font-medium m-5">
               <p>Your cart</p>
             </div>
@@ -73,60 +68,54 @@ export default function CartPage() {
             <div>
               <hr className="sm:mx-auto dark:border-gray-700 " />
             </div>
-
-            {productInCart.map(el => (
-              <div className="flex justify-between w-full mx-5" key={el.id}>
-                <div className="flex">
-                  <div className="">
-                    <img
-                      className="p-2 w-[150px] h-[300]"
-                      src={el.Product?.image}
-                    />
-                  </div>
-                  <div className="flex flex-col ml-3 gap-5 justify-center w-[360px]">
-                    <p className="flex justify-center">{el.Product.title}</p>
-                    <p className="flex justify-center">{el.Product.price} $</p>
-                    <div className=" flex items-center">
-                      <button
-                        className="w-10 flex justify-center bg-black text-white rounded-sm"
-                        onClick={() => {
-                          handleClickDecProduct(el.id);
-                        }}
-                      >
-                        -
-                      </button>
-                      <span className="flex justify-center w-full">
-                        {el.amount}
-                      </span>
-                      <button
-                        className="w-10 flex justify-center bg-black text-white rounded-sm"
-                        onClick={() => {
-                          handleClickIncProduct(el.id);
-                        }}
-                      >
-                        +
-                      </button>
+            <div className="flex flex-col">
+              {productInCart.map(el => (
+                <div className="flex justify-between w-full mx-8" key={el.id}>
+                  <div className="flex">
+                    <div className="">
+                      <img className="p-2 w-[150px] h-[300]" src={el.Product?.image} />
                     </div>
-                    <div className="w-full flex justify-center">
-                      <button
-                        className="flex justify-center items-center w-24 rounded-md p-1  bg-red-900 text-white text-sm"
-                        onClick={() => {
-                          handleClickDelProduct(el.id);
-                        }}
-                      >
-                        remove
-                      </button>
+                    <div className="flex flex-col ml-3 gap-5 justify-center w-[360px]">
+                      <p className="flex justify-center">{el.Product.title}</p>
+                      <p className="flex justify-center">{el.Product.price} $</p>
+                      <div className=" flex items-center">
+                        <button
+                          className="w-10 flex justify-center bg-black text-white rounded-sm"
+                          onClick={() => {
+                            handleClickDecProduct(el.id);
+                          }}
+                        >
+                          -
+                        </button>
+                        <span className="flex justify-center w-full">{el.amount}</span>
+                        <button
+                          className="w-10 flex justify-center bg-black text-white rounded-sm"
+                          onClick={() => {
+                            handleClickIncProduct(el.id);
+                          }}
+                        >
+                          +
+                        </button>
+                      </div>
+                      <div className="w-full flex justify-center">
+                        <button
+                          className="flex justify-center items-center w-24 rounded-md p-1  bg-red-900 text-white text-sm"
+                          onClick={() => {
+                            handleClickDelProduct(el.id);
+                          }}
+                        >
+                          remove
+                        </button>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="flex ml-36 ">
-                    <p className="flex items-center">
-                      {`${el.Product.price * el.amount}`} $
-                    </p>
+                    <div className="flex ml-52  ">
+                      <p className="flex items-center">{`${el.Product.price * el.amount}`} $</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
 
             <div>
               <hr className="m-6 sm:mx-auto dark:border-gray-700 " />
@@ -136,8 +125,7 @@ export default function CartPage() {
                 <span>Total</span>
                 <span>
                   {`${productInCart.reduce(
-                    (acc, product) =>
-                      acc + product.Product.price * product.amount,
+                    (acc, product) => acc + product.Product.price * product.amount,
                     0
                   )}`}
                   $
@@ -149,9 +137,7 @@ export default function CartPage() {
             </div>
             <div className=" h-[500px] flex flex-col justify-center items-center">
               <div>
-                <p className="mb-10">
-                  Please upload your slip payment before checkout!
-                </p>
+                <p className="mb-10">Please upload your slip payment before checkout!</p>
               </div>
               <img
                 className="w-[235px] h-[301px]"
@@ -166,28 +152,18 @@ export default function CartPage() {
                     setFile(e.target.files[0]);
                   }}
                 />
-                <button
-                  type="button"
-                  className="text-white h-12 text-sm m-1 bg-black rounded-lg p-1 "
-                  onClick={handleClickUpload}
-                >
-                  Upload
-                </button>
               </div>
             </div>
 
             <div className="flex justify-center flex-col font-Roboto">
-              <Link to="/">
-                <button
-                  type="button"
-                  className="text-white w-full text-sm mb-3 bg-black rounded-lg p-1"
-                  // onClick={checkoutAlert}
-                >
-                  CHECKOUT
-                </button>
-              </Link>
+              <button
+                type="button"
+                className="text-white w-full text-sm mb-3 bg-black rounded-lg p-1"
+                onClick={handleClickUpload}
+              >
+                CHECKOUT
+              </button>
             </div>
-
             <hr className="m-6 sm:mx-auto dark:border-gray-700 " />
           </div>
         </div>

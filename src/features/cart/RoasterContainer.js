@@ -12,7 +12,7 @@ export default function RoasterContainer() {
     fetchRoaster();
   }, []);
 
-  // console.log(roasters);
+  console.log(roasters);
   return (
     <>
       <div className="px-2 sm:px-6 pt-6 ">
@@ -21,17 +21,19 @@ export default function RoasterContainer() {
         </div>
         <hr className="m-6 sm:mx-auto dark:border-gray-700" />
       </div>
-
-      {roasters.map(el => (
-        <div className="flex flex-col justify-center " key={el.id}>
-          <div className="" >
-            <div className="flex flex-col items-center">
-              <img className="" src={el.image} />
-              <p className="flex">{el.title}</p>
+      <div className="flex justify-center">
+        {roasters.map(el => (
+      
+          <div className="flex p-5 hover:bg-gray-200" key={el.id}>
+            <div className="">
+              <div className="flex flex-col items-center  p-2">
+                <img className="" src={el.image} />
+                <p className="flex font-medium">{el.roasterTitle}</p>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </>
   );
 }

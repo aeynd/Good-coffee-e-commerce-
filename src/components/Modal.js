@@ -1,58 +1,32 @@
-import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
-
-export default function Modal(show,onClose,children,title) {
+export default function Modal({
+  children,
+  title,
+  isOpen,
+  onClose,
+  titleSize = "text-xl",
+  alwaysOpen = false
+}) {
   return (
     <>
-      <Modal show={show} size="md" popup={true} onClose={onClose}>
-        <Modal.Header />
-        <Modal.Body>
-          <div className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8">
-            <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-              Sign in to our
-            </h3>
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="email" value="Your email" />
-              </div>
-              <TextInput
-                id="email"
-                placeholder="name@company.com"
-                required={true}
-              />
-            </div>
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="password" value="Your password" />
-              </div>
-              <TextInput id="password" type="password" required={true} />
-            </div>
-            <div className="flex justify-between">
-              <div className="flex items-center gap-2">
-                <Checkbox id="remember" />
-                <Label htmlFor="remember">Remember me</Label>
-              </div>
-              <a
-                href="/modal"
-                className="text-sm text-blue-700 hover:underline dark:text-blue-500"
-              >
-                Lost Password?
-              </a>
-            </div>
-            <div className="w-full">
-              <Button>Log in to your account</Button>
-            </div>
-            <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-              Not registered?{" "}
-              <a
-                href="/modal"
-                className="text-blue-700 hover:underline dark:text-blue-500"
-              >
-                Create account
-              </a>
-            </div>
+      {/* background */}
+      <div
+        className={`${
+          isOpen ? "" : "hidden"
+        } fixed top-0 left-0 w-full h-full overflow-x-hidden overflow-y-auto bg-[#232323aa] z-50`}
+        onMouseDown={!alwaysOpen ? onClose : () => {}}
+      >
+        {/* card */}
+        <div
+          className="relative rounded-lg p-2 w-3/4 top-10 mx-auto bg-[#FFFFFF] mb-[15vh]"
+          onMouseDown={(e) => (!alwaysOpen ? e.stopPropagation() : {})}
+        >
+          <div className="rounded-lg">
+            <div className="flex flex-col items-center space-y-4 md:space-y-6 sm:p-8"></div>
+            <div className={`${titleSize} py-2 font-bold text-center`}>{title}</div>
+            {children}
           </div>
-        </Modal.Body>
-      </Modal>
+        </div>
+      </div>
     </>
   );
 }
